@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DatabaseModule } from './database/database.module';
+import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './users/users.module';
 
+import sequalizeConfig from './config/seq-config';
+import models from './models';
+
 @Module({
-  imports: [DatabaseModule, UsersModule],
+  imports: [
+    SequelizeModule.forRoot({
+      ...sequalizeConfig,
+      models,
+      synchronize: false,
+    }),
+    UsersModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

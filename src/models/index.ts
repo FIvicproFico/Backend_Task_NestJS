@@ -1,7 +1,5 @@
-import { Address } from './address';
-import { Users } from './users';
+import { User } from '../users/user.model';
 
-const models = [Address, Users];
+const models = [User];
 
-export { Address, Users };
 export default models;
