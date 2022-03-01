@@ -1,0 +1,45 @@
+import 'dotenv/config';
+
+import { Dialect } from 'sequelize';
+
+interface IEnv {
+  accessTokenSecret: string;
+  refreshTokenSecret: string;
+
+  dbName: string;
+  dbDialect: Dialect;
+  dbUsername: string;
+  dbPassword: string;
+  dbHostname: string;
+  dbPort: number;
+
+  mailService: string;
+  mailAdress: string;
+  appSpecificPassword: string;
+
+  subject: string;
+
+  admin: string;
+}
+
+const env: IEnv = {
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+  refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+  dbName: process.env.DB_NAME,
+
+  dbUsername: process.env.DB_USERNAME,
+  dbPassword: process.env.DB_PASSWORD,
+  dbDialect: 'mysql',
+  dbHostname: process.env.DB_HOSTNAME,
+  dbPort: parseInt(process.env.DB_PORT),
+
+  mailService: process.env.MAIL_SERVICE,
+  mailAdress: process.env.MAIL_ADRESS,
+  appSpecificPassword: process.env.APPLICATION_SPECIFIC_PASSWORD,
+
+  subject: process.env.SUBJECT,
+
+  admin: process.env.ADMIN,
+};
+
+export default env;
