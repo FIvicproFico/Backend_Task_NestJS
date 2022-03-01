@@ -1,5 +1,6 @@
-import env from './env-config';
 import { Dialect } from 'sequelize';
+
+import env from './env-config';
 
 interface ISequelize {
   dialect: Dialect;
