@@ -17,6 +17,7 @@ import {
 export class User extends Model {
   @PrimaryKey
   @AutoIncrement
+  @AllowNull(false)
   @Column(DataType.INTEGER)
   id: number;
 
@@ -28,22 +29,24 @@ export class User extends Model {
   username: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.STRING(255))
   password: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.STRING(45))
   name: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.STRING(45))
   surname: string;
 
   @Unique(true)
-  @Column(DataType.STRING)
+  @AllowNull(false)
+  @Column(DataType.STRING(45))
   email: string;
 
-  @Column(DataType.STRING)
+  @AllowNull(false)
+  @Column(DataType.STRING(45))
   role: string;
 
   @CreatedAt
