@@ -1,7 +1,11 @@
+import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
+
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 
-import { User } from '../users/user.model';
+import env from '../config/env-config';
+
 import { UserCredidentialsDto } from './dto/user-credidential.dto';
 
 @Controller('login')
@@ -16,8 +20,25 @@ export class LoginController {
   @Post()
   async postLogin(
     @Body() userCredidentialsDto: UserCredidentialsDto,
-  ): Promise<User> {
-    console.log(userCredidentialsDto);
-    return await this.usersService.findOneByEmail(userCredidentialsDto.email);
+  ): Promise<string> {
+    const user = await this.usersService.findOneByEmail(
+      userCredidentialsDto.email,
+    );
+    if (bcrypt.compareSync(userCredidentialsDto.password, user.password)) {
+      const token = jwt.sign(
+        {
+          uuid: user.uuid,
+          username: user.username,
+          name: user.name,
+          surname: user.surname,
+          email: user.email,
+          role: user.role,
+        },
+        env.accessTokenSecret,
+        // { expiresIn: '1m' },
+      );
+      return token;
+    }
+    return 'Email or Password incorrect';
   }
 }
