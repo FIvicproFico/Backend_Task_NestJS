@@ -7,6 +7,7 @@ import { User } from './user.model';
 
 @Module({
   imports: [SequelizeModule.forFeature([User])],
+  exports: [UsersService],
   controllers: [UsersController],
   providers: [UsersService],
 })

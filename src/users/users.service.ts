@@ -19,6 +19,16 @@ export class UsersService {
       where: {
         id,
       },
+      raw: true,
+    });
+  }
+
+  async findOneByEmail(email: string): Promise<User> {
+    return this.userModel.findOne({
+      where: {
+        email,
+      },
+      raw: true,
     });
   }
 
