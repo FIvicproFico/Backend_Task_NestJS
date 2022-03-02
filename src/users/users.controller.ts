@@ -1,15 +1,18 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
   Param,
   ParseIntPipe,
+  Post,
   UseGuards,
 } from '@nestjs/common';
 
 import { JWTGuard } from '../guards/auth.guard';
 import { User } from './user.model';
 import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 @UseGuards(JWTGuard)
@@ -24,17 +27,25 @@ export class UsersController {
   // }
 
   @Get()
-  async findAll(): Promise<User[]> {
+  async getUsers(): Promise<User[]> {
     return await this.usersService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id', ParseIntPipe) id: string): Promise<User> {
+  async getUser(@Param('id', ParseIntPipe) id: string): Promise<User> {
     return await this.usersService.findOne(id);
   }
 
+  @Post()
+  async createUser(
+    @Body() createUserDto: CreateUserDto,
+  ): Promise<[User, boolean]> {
+    console.log(createUserDto);
+    return await this.usersService.findOrCreate(createUserDto);
+  }
+
   @Delete(':id')
-  async remove(@Param('id', ParseIntPipe) id: string): Promise<string> {
+  async deleteUser(@Param('id', ParseIntPipe) id: string): Promise<string> {
     // await this.usersService.remove(id);
     await console.log();
     return `This action removes a #${id} user`;

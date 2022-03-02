@@ -17,14 +17,14 @@ import {
 export class User extends Model {
   @PrimaryKey
   @AutoIncrement
-  @Column
+  @Column(DataType.INTEGER)
   id: number;
 
   @Column(DataType.UUID)
   uuid: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
+  @Column(DataType.STRING(45))
   username: string;
 
   @AllowNull(false)
