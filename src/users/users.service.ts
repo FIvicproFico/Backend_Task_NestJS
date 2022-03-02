@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -18,22 +18,26 @@ export class UsersService {
     return this.userModel.findAll();
   }
 
-  async findOne(id: string): Promise<User> {
-    return this.userModel.findOne({
+  async findOne(id: string): Promise<User | null> {
+    const user = await this.userModel.findOne({
       where: {
         id,
       },
       raw: true,
     });
+    if (user) return user;
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
 
   async findOneByEmail(email: string): Promise<User> {
-    return this.userModel.findOne({
+    const user = await this.userModel.findOne({
       where: {
         email,
       },
       raw: true,
     });
+    if (user) return user;
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
 
   async findOrCreate(createUserDto: CreateUserDto): Promise<[User, boolean]> {

@@ -1,7 +1,14 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 
 import env from '../config/env-config';
@@ -39,6 +46,9 @@ export class LoginController {
       );
       return token;
     }
-    return 'Email or Password incorrect';
+    throw new HttpException(
+      'Email or Password incorrect',
+      HttpStatus.FORBIDDEN,
+    );
   }
 }
