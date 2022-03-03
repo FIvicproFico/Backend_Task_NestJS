@@ -29,6 +29,17 @@ export class UsersService {
     throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
 
+  async findOneByUsername(username: string): Promise<User> {
+    const user = await this.userModel.findOne({
+      where: {
+        username,
+      },
+      raw: true,
+    });
+    if (user) return user;
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+  }
+
   async findOneByEmail(email: string): Promise<User> {
     const user = await this.userModel.findOne({
       where: {
