@@ -8,6 +8,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { MyLoggerService } from '@lib/my-logger';
 
 import { JWTGuard } from '../guards/auth.guard';
 import { User } from './user.model';
@@ -17,7 +18,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 @Controller('users')
 @UseGuards(JWTGuard)
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private myLoggerService: MyLoggerService,
+  ) {}
 
   // @Get()
   // findAll(): Promise<User[]> {
@@ -40,7 +44,7 @@ export class UsersController {
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<[User, boolean]> {
-    console.log(createUserDto);
+    this.myLoggerService.myLog(JSON.stringify(createUserDto));
     return await this.usersService.findOrCreate(createUserDto);
   }
 
