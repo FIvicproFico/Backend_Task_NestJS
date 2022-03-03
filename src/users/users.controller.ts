@@ -9,14 +9,15 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { MyLoggerService } from '@lib/my-logger';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 
-import { JWTGuard } from '../guards/auth.guard';
+import { BasicGuard } from '../guards/auth.guard';
 import { User } from './user.model';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
-@UseGuards(JWTGuard)
+@UseGuards(BasicGuard)
 export class UsersController {
   constructor(
     private usersService: UsersService,
@@ -36,11 +37,13 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   async getUser(@Param('id', ParseIntPipe) id: string): Promise<User> {
     return await this.usersService.findOne(id);
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<[User, boolean]> {
@@ -49,6 +52,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   async deleteUser(@Param('id', ParseIntPipe) id: string): Promise<string> {
     // await this.usersService.remove(id);
     await console.log();

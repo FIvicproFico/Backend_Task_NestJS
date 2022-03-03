@@ -6,18 +6,19 @@ import env from '../config/env-config';
 
 import { UsersModule } from '../users/users.module';
 import { AuthService } from './auth.service';
+import { JwtStrategy } from './jwt.strategy';
 import { LocalStrategy } from './local.strategy';
 
 @Module({
   imports: [
     JwtModule.register({
       secret: env.accessTokenSecret,
-      // signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '60s' },
     }),
     UsersModule,
     PassportModule,
   ],
   exports: [AuthService],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}

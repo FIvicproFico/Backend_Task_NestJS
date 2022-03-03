@@ -1,20 +1,14 @@
-import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcrypt';
-
 import { Controller, Get, Post, UseGuards, Req } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { User } from 'src/users/user.model';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 
-import { UsersService } from '../users/users.service';
+import { User } from '../users/user.model';
 import { AuthService } from '../auth/auth.service';
+import { LocalAuthGuard } from '../guards/local-auth.guard';
 
 @Controller('login')
 export class LoginController {
-  constructor(
-    private usersService: UsersService,
-    private authService: AuthService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   @Get()
   getLogin(): string {
@@ -22,8 +16,14 @@ export class LoginController {
   }
 
   @Post()
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   async postLogin(@Req() req: Request & { user: User }) {
+    return this.authService.login(req.user);
+  }
+
+  @Get('profile')
+  @UseGuards(JwtAuthGuard)
+  async getProfile(@Req() req: Request & { user: User }) {
     return req.user;
   }
 }

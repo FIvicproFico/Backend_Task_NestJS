@@ -23,16 +23,16 @@ export class AuthService {
     return null;
   }
 
-  // async login(user: User): Promise<string> {
-  //   const payload = {
-  //     uuid: user.uuid,
-  //     username: user.username,
-  //     name: user.name,
-  //     surname: user.surname,
-  //     email: user.email,
-  //     role: user.role,
-  //   };
-  //   const access_token = this.jwtService.sign(payload);
-  //   return access_token;
-  // }
+  async login(user: User): Promise<string> {
+    const payload = {
+      uuid: user.uuid,
+      username: user.username,
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      role: user.role,
+    };
+    const access_token = this.jwtService.sign(payload);
+    return access_token;
+  }
 }

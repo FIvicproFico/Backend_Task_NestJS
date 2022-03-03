@@ -7,7 +7,7 @@ import {
 import { Reflector } from '@nestjs/core';
 
 @Injectable()
-export class JWTGuard implements CanActivate {
+export class BasicGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
