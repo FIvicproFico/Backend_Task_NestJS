@@ -16,21 +16,18 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
-    response.status(status).json({
+    const object = {
       statusCode: status,
       message: exception.getResponse(),
       timestamp: new Date().toISOString(),
       path: request.url,
-    });
+    };
 
-    fs.writeFile(
+    response.status(status).json(object);
+
+    fs.appendFile(
       'logger.txt',
-      JSON.stringify({
-        statusCode: status,
-        message: exception.getResponse(),
-        timestamp: new Date().toISOString(),
-        path: request.url,
-      }),
+      new Date().toISOString() + '\t' + JSON.stringify(object) + '\r\n',
       err => {
         if (err) throw err;
         console.log('Exception saved!');
