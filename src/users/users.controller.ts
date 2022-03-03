@@ -44,7 +44,7 @@ export class UsersController {
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<[User, boolean]> {
-    this.myLoggerService.myLog(JSON.stringify(createUserDto));
+    this.myLoggerService.myLog('Test');
     return await this.usersService.findOrCreate(createUserDto);
   }
 
