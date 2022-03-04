@@ -5,8 +5,6 @@ import { APP_FILTER } from '@nestjs/core';
 import sequalizeConfig from './config/seq-config';
 import models from '../database/models';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { AuthModule } from './auth/auth.module';
@@ -21,13 +19,11 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     AuthModule,
   ],
-  controllers: [AppController],
   providers: [
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
     },
-    AppService,
   ],
 })
 export class AppModule {}
