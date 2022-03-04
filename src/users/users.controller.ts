@@ -9,35 +9,36 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { MyLoggerService } from '@lib/my-logger';
-import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/guards/roles.guard';
 
+import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { BasicGuard } from '../guards/basic-auth.guard';
 import { User } from './user.model';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
-@Controller('users')
 @UseGuards(BasicGuard)
+@Controller('users')
 export class UsersController {
   constructor(
     private usersService: UsersService,
     private myLoggerService: MyLoggerService,
   ) {}
 
-  @Get()
   @UseGuards(JwtAuthGuard)
+  @Get()
   async getUsers(): Promise<User[]> {
     return await this.usersService.findAll();
   }
 
-  @Get(':id')
   @UseGuards(JwtAuthGuard)
+  @Get(':id')
   async getUser(@Param('id', ParseIntPipe) id: string): Promise<User> {
     return await this.usersService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
-  @UseGuards(JwtAuthGuard)
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<[User, boolean]> {
@@ -45,8 +46,8 @@ export class UsersController {
     return await this.usersService.findOrCreate(createUserDto);
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
   async deleteUser(@Param('id', ParseIntPipe) id: string): Promise<string> {
     // await this.usersService.remove(id);
     return `This action removes a #${id} user`;
