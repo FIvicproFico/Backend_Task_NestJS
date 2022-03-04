@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { MyLoggerService } from '@lib/my-logger';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-import { LocalAuthGuard } from 'src/guards/local-auth.guard';
 
 import { BasicGuard } from '../guards/basic-auth.guard';
 import { User } from './user.model';
@@ -33,7 +32,7 @@ export class UsersController {
   // }
 
   @Get()
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(JwtAuthGuard)
   async getUsers(): Promise<User[]> {
     return await this.usersService.findAll();
   }

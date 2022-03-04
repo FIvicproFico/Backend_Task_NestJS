@@ -5,10 +5,14 @@ import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { User } from '../users/user.model';
 import { AuthService } from '../auth/auth.service';
 import { LocalAuthGuard } from '../guards/local-auth.guard';
+import { UsersService } from '../users/users.service';
 
 @Controller('login')
 export class LoginController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private usersService: UsersService,
+  ) {}
 
   @Get()
   getLogin(): string {
@@ -24,7 +28,7 @@ export class LoginController {
   @Get('profile')
   @UseGuards(JwtAuthGuard)
   async getProfile(@Req() req: Request & { user: User }) {
-    return req.user;
+    return this.usersService.findOneByEmail(req.user.email);
   }
 }
 

@@ -2,7 +2,7 @@ import {
   Injectable,
   CanActivate,
   ExecutionContext,
-  UnauthorizedException,
+  BadRequestException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 
@@ -16,7 +16,7 @@ export class BasicGuard implements CanActivate {
       const token = request.headers.authorization.split(' ')[1];
       if (token) return true;
     } else {
-      throw new UnauthorizedException();
+      throw new BadRequestException();
     }
   }
 }
