@@ -1,12 +1,14 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
+import { User } from 'src/users/user.model';
 
 import env from '../config/env-config';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
+  constructor(private usersService: UsersService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: true,
@@ -15,14 +17,17 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   // if there is bearer token (jwt) in request header
-  async validate(payload: any) {
-    return {
-      userId: payload.id,
-      username: payload.username,
-      name: payload.name,
-      surname: payload.surname,
-      email: payload.email,
-      role: payload.role,
-    };
+  async validate(payload: User): Promise<any> {
+    const user = await this.usersService.findOneByUsername(payload.username);
+    if (user)
+      return {
+        uuid: payload.uuid,
+        username: payload.username,
+        name: payload.name,
+        surname: payload.surname,
+        email: payload.email,
+        role: payload.role,
+      };
+    return null;
   }
 }
