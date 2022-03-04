@@ -24,13 +24,6 @@ export class UsersController {
     private myLoggerService: MyLoggerService,
   ) {}
 
-  // @Get()
-  // findAll(): Promise<User[]> {
-  //   const users = this.usersService.findAll();
-  //   console.log(users);
-  //   return users;
-  // }
-
   @Get()
   @UseGuards(JwtAuthGuard)
   async getUsers(): Promise<User[]> {

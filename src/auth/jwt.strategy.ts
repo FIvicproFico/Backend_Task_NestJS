@@ -18,7 +18,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   // if there is bearer token (jwt) in request header
   async validate(payload: User): Promise<any> {
-    console.log(payload);
     const user = await this.usersService.findOneByUsername(payload.username);
     if (user)
       return {
