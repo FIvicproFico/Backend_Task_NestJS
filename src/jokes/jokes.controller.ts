@@ -1,12 +1,21 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
+import { User } from 'src/users/user.model';
 
 import { JokesService } from './jokes.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('jokes')
 export class JokesController {
   constructor(private jokesService: JokesService) {}
+
   @Get()
-  getJoke(): Promise<string> {
+  getJoke(@Req() req: Request & { user: User }): Promise<string> {
+    return this.jokesService.getJoke(req.user);
+  }
+
+  @Get('random')
+  getRandomJoke(): Promise<string> {
     return this.jokesService.getRandomJoke();
   }
 }

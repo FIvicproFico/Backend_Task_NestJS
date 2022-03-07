@@ -17,7 +17,7 @@ import { User } from './user.model';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
-@UseGuards(BasicGuard)
+@UseGuards(BasicGuard, JwtAuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(
@@ -25,20 +25,18 @@ export class UsersController {
     private myLoggerService: MyLoggerService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   public getUsers(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
     console.log(typeof id);
     return await this.usersService.findOne(id);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  @UseGuards(RolesGuard)
   @Post()
   async createUser(
     @Body() createUserDto: CreateUserDto,
@@ -47,7 +45,7 @@ export class UsersController {
     return await this.usersService.findOrCreate(createUserDto);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
+  @UseGuards(RolesGuard)
   @Delete(':id')
   async deleteUser(@Param('id', ParseIntPipe) id: number): Promise<string> {
     await this.usersService.remove(id);
