@@ -27,13 +27,14 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async getUsers(): Promise<User[]> {
-    return await this.usersService.findAll();
+  public getUsers(): Promise<User[]> {
+    return this.usersService.findAll();
   }
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  async getUser(@Param('id', ParseIntPipe) id: string): Promise<User> {
+  async getUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
+    console.log(typeof id);
     return await this.usersService.findOne(id);
   }
 
@@ -42,14 +43,14 @@ export class UsersController {
   async createUser(
     @Body() createUserDto: CreateUserDto,
   ): Promise<[User, boolean]> {
-    this.myLoggerService.myLog('Test');
+    this.myLoggerService.myLog('Post');
     return await this.usersService.findOrCreate(createUserDto);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':id')
-  async deleteUser(@Param('id', ParseIntPipe) id: string): Promise<string> {
-    // await this.usersService.remove(id);
+  async deleteUser(@Param('id', ParseIntPipe) id: number): Promise<string> {
+    await this.usersService.remove(id);
     return `This action removes a #${id} user`;
   }
 }

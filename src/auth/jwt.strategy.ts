@@ -16,19 +16,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  // if there is bearer token (jwt) in request header
   async validate(payload: User): Promise<User> {
-    const user = await this.usersService.findOneByUsername(payload.username);
+    const user = await this.usersService.findOneByEmail(payload.email);
     if (user) return user;
     return null;
   }
 }
-
-// {
-//   uuid: payload.uuid,
-//   username: payload.username,
-//   name: payload.name,
-//   surname: payload.surname,
-//   email: payload.email,
-//   role: payload.role,
-// };

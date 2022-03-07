@@ -8,6 +8,7 @@ import models from '../database/models';
 import { UsersModule } from './users/users.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { AuthModule } from './auth/auth.module';
+import { JokesModule } from './jokes/jokes.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    JokesModule,
   ],
   providers: [
     {

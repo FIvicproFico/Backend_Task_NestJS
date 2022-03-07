@@ -8,18 +8,18 @@ import { Request } from 'express';
 export class MyLoggerService {
   constructor(@Inject(REQUEST) private readonly request: Request) {}
 
-  myLog(input: string): void {
+  myLog(message: string): void {
     fs.appendFile(
       'logger.txt',
       new Date().toISOString() +
         '\t' +
-        input +
+        message +
         ', request: ' +
         JSON.stringify(this.request.body) +
         '\r\n',
       err => {
         if (err) throw err;
-        console.log('Exception saved!');
+        console.log('Log Saved!');
       },
     );
   }

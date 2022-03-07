@@ -15,8 +15,7 @@ export class AuthService {
 
   async compare(credPassword: string, dbPassword: string): Promise<boolean> {
     const match = await bcrypt.compare(credPassword, dbPassword);
-    if (match) return true;
-    return false;
+    return match;
   }
 
   async validateUser(email: string, password: string): Promise<User> {
@@ -28,7 +27,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: User): Promise<string> {
+  login(user: User): string {
     const payload = {
       uuid: user.uuid,
       username: user.username,

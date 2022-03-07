@@ -21,13 +21,13 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post()
-  async postLogin(@Req() req: Request & { user: User }): Promise<string> {
+  postLogin(@Req() req: Request & { user: User }): string {
     return this.authService.login(req.user);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async getProfile(@Req() req: Request & { user: User }): Promise<User> {
+  getProfile(@Req() req: Request & { user: User }): Promise<User> {
     return this.usersService.findOneByEmail(req.user.email);
   }
 }

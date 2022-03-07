@@ -11,32 +11,28 @@ import { User } from './user.model';
 export class UsersService {
   constructor(
     @InjectModel(User)
-    private userModel: typeof User,
+    private readonly userModel: typeof User,
   ) {}
 
   async findAll(): Promise<User[]> {
-    return this.userModel.findAll();
+    try {
+      const users = await this.userModel.findAll();
+      return users;
+    } catch (error) {
+      return [];
+    }
   }
 
-  async findOne(id: string): Promise<User | null> {
+  async findOne(id: number): Promise<User> {
     const user = await this.userModel.findOne({
       where: {
         id,
       },
-      raw: true,
+      raw: false,
     });
-    if (user) return user;
-    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-  }
-
-  async findOneByUsername(username: string): Promise<User> {
-    const user = await this.userModel.findOne({
-      where: {
-        username,
-      },
-      raw: true,
-    });
-    if (user) return user;
+    if (user) {
+      return user;
+    }
     throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
 
@@ -51,9 +47,9 @@ export class UsersService {
     throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
 
-  async findOrCreate(createUserDto: CreateUserDto): Promise<[User, boolean]> {
+  findOrCreate(createUserDto: CreateUserDto): Promise<[User, boolean]> {
     const hash = bcrypt.hashSync(createUserDto.password, 10);
-    return await this.userModel.findOrCreate({
+    return this.userModel.findOrCreate({
       where: {
         username: createUserDto.username,
         email: createUserDto.email,
@@ -68,7 +64,7 @@ export class UsersService {
     });
   }
 
-  async remove(id: string): Promise<void> {
+  async remove(id: number): Promise<void> {
     const user = await this.findOne(id);
     await user.destroy();
   }
