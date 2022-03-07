@@ -14,10 +14,11 @@ interface IEnv {
   dbPort: number;
 
   mailService: string;
-  mailAdress: string;
+  mailAddress: string;
   appSpecificPassword: string;
 
-  subject: string;
+  mailSubject: string;
+  mailFrom: string;
 
   admin: string;
 }
@@ -34,10 +35,11 @@ const env: IEnv = {
   dbPort: parseInt(process.env.DB_PORT),
 
   mailService: process.env.MAIL_SERVICE,
-  mailAdress: process.env.MAIL_ADRESS,
+  mailAddress: process.env.MAIL_ADDRESS,
   appSpecificPassword: process.env.APPLICATION_SPECIFIC_PASSWORD,
 
-  subject: process.env.SUBJECT,
+  mailSubject: process.env.MAIL_SUBJECT,
+  mailFrom: process.env.MAIL_FROM,
 
   admin: process.env.ADMIN,
 };
