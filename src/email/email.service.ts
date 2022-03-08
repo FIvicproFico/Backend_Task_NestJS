@@ -8,6 +8,6 @@ export class EmailService {
 
   async sendEmail(mailOptions: IMailOptions): Promise<void> {
     await this.mailerService.sendMail(mailOptions);
-    console.log('Email Sent!');
+    console.log(__dirname);
   }
 }

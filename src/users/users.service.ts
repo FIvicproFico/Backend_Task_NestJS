@@ -33,7 +33,7 @@ export class UsersService {
     if (user) {
       return user;
     }
-    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
   }
 
   async findOneByEmail(email: string): Promise<User> {

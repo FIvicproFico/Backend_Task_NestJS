@@ -13,8 +13,8 @@
     }
   },
   "compilerOptions": {
-    "webpack": true,
-    "assets": ["mail/templates/**/*"],
-    "watchAssets": true
+    "assets": ["email/templates/**/*"],
+    "watchAssets": true,
+    "webpack": true
   }
 }

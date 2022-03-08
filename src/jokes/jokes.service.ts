@@ -23,7 +23,11 @@ export class JokesService {
         to: user.email,
         from: env.mailFrom,
         subject: env.mailSubject,
-        text: joke,
+        // text: joke,
+        template: 'test',
+        context: {
+          joke,
+        },
       };
       await this.emailService.sendEmail(mailOptions);
       return joke;
