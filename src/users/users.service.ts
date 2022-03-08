@@ -1,5 +1,7 @@
 import * as bcrypt from 'bcrypt';
 
+import sequelize from 'sequelize';
+
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,6 +19,18 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     try {
       const users = await this.userModel.findAll();
+      return users;
+    } catch (error) {
+      return [];
+    }
+  }
+
+  async findAllQuery(param: string): Promise<any> {
+    try {
+      const users = await this.userModel.sequelize.query(
+        "SELECT * FROM User WHERE USERNAME like '" + param,
+        { type: sequelize.QueryTypes.SELECT },
+      );
       return users;
     } catch (error) {
       return [];

@@ -30,6 +30,13 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get('test')
+  public getUsersQuery(): Promise<any> {
+    return this.usersService.findAllQuery(
+      "F%'; UPDATE User SET username='Hacked4' WHERE id > 0;",
+    );
+  }
+
   @Get(':id')
   async getUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
     console.log(typeof id);
