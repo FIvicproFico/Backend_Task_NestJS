@@ -1,3 +1,5 @@
+import Bottle from 'database/models/bottle.model';
+
 import { Controller, Get } from '@nestjs/common';
 
 import { BottlesService } from './bottles.service';
@@ -7,7 +9,7 @@ export class BottlesController {
   constructor(private bottlesService: BottlesService) {}
 
   @Get()
-  public get() {
-    return this.bottlesService.test(1);
+  public getAll(): Promise<Bottle[]> {
+    return this.bottlesService.findAll();
   }
 }

@@ -11,7 +11,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50),
       },
-      vinmonopoletId: {
+      vinmonopolet_id: {
         unique: true,
         allowNull: false,
         type: Sequelize.STRING(50),

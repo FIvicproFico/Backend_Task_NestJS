@@ -2,6 +2,7 @@ import MainProfile from 'database/models/mainProfile.model';
 import Manufacturer from 'database/models/manufacturer.model';
 import Vintage from 'database/models/vintage.model';
 import Bottle from 'database/models/bottle.model';
+import Grape from 'database/models/grapes.model';
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
@@ -22,7 +23,12 @@ export class MainProfilesService {
   async findAll(): Promise<MainProfile[]> {
     try {
       const mainProfiles = await this.mainProfileRepo.findAll({
-        include: [{ model: Vintage, include: [{ model: Bottle }] }],
+        include: [
+          {
+            model: Vintage,
+            include: [{ model: Bottle, include: [{ model: Grape }] }],
+          },
+        ],
       });
       return mainProfiles;
     } catch (error) {
