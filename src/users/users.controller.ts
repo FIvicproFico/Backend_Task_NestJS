@@ -11,9 +11,10 @@ import {
 import { MyLoggerService } from '@lib/my-logger';
 import { RolesGuard } from 'src/guards/roles.guard';
 
+import User from '../../database/models/user.model';
+
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { BasicGuard } from '../guards/basic-auth.guard';
-import { User } from './user.model';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 

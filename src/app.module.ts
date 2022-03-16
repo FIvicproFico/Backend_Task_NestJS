@@ -10,6 +10,7 @@ import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { AuthModule } from './auth/auth.module';
 import { JokesModule } from './jokes/jokes.module';
 import { EmailModule } from './email/email.module';
+import { MainProfilesModule } from './main-profiles/main-profiles.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { EmailModule } from './email/email.module';
     AuthModule,
     JokesModule,
     EmailModule,
+    MainProfilesModule,
   ],
   providers: [
     {

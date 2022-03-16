@@ -1,6 +1,7 @@
+import User from 'database/models/user.model';
+
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
-import { User } from 'src/users/user.model';
 
 import { JokesService } from './jokes.service';
 

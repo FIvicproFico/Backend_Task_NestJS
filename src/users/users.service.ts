@@ -6,8 +6,9 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { v4 as uuidv4 } from 'uuid';
 
+import User from '../../database/models/user.model';
+
 import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './user.model';
 
 @Injectable()
 export class UsersService {

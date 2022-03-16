@@ -14,7 +14,7 @@ import {
 @Table({
   tableName: 'User',
 })
-export class User extends Model {
+export default class User extends Model {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)

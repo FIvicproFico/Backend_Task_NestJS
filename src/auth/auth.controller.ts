@@ -1,8 +1,9 @@
+import User from 'database/models/user.model';
+
 import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
 import { LocalAuthGuard } from 'src/guards/local-auth.guard';
-import { User } from 'src/users/user.model';
 import { UsersService } from 'src/users/users.service';
 
 import { AuthService } from './auth.service';

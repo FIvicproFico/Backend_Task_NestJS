@@ -1,8 +1,8 @@
 import axios from 'axios';
 import env from 'src/config/env-config';
+import User from 'database/models/user.model';
 
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/users/user.model';
 import { EmailService } from 'src/email/email.service';
 
 import { IServerData } from './interfaces/server-data.interface';
