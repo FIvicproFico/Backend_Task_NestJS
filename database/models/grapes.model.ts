@@ -32,5 +32,5 @@ export default class Grape extends ModelWithPk {
   bottles: Bottle[];
 
   @HasMany(() => BottleGrape, { foreignKey: 'grape_id', onDelete: 'CASCADE' })
-  bottleFood: BottleGrape[];
+  bottleGrape: BottleGrape[];
 }

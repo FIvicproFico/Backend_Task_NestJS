@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { JokesModule } from './jokes/jokes.module';
 import { EmailModule } from './email/email.module';
 import { MainProfilesModule } from './main-profiles/main-profiles.module';
+import { BottlesModule } from './bottles/bottles.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { MainProfilesModule } from './main-profiles/main-profiles.module';
     JokesModule,
     EmailModule,
     MainProfilesModule,
+    BottlesModule,
   ],
   providers: [
     {
