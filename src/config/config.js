@@ -9,7 +9,7 @@ module.exports = {
     port: process.env.DB_PORT,
     dialect: 'mysql',
     seederStorage: 'sequelize',
-    // logging: true,
+    logging: true,
     dialectOptions: {
       bigNumberStrings: true,
     },

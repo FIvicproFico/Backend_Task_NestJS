@@ -10,7 +10,7 @@ interface ISequelize {
   password: string;
   database: string;
 }
-
+console.log(env);
 const sequalizeConfig: ISequelize = {
   dialect: env.dbDialect,
   host: env.dbHostname,

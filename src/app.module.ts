@@ -12,20 +12,26 @@ import { JokesModule } from './jokes/jokes.module';
 import { EmailModule } from './email/email.module';
 import { MainProfilesModule } from './main-profiles/main-profiles.module';
 import { BottlesModule } from './bottles/bottles.module';
+import { VintagesModule } from './vintages/vintages.module';
+import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
       ...sequalizeConfig,
       models,
-      synchronize: false,
+      synchronize: true,
+      autoLoadModels: true,
+      logging: true,
     }),
-    UsersModule,
     AuthModule,
-    JokesModule,
     EmailModule,
+    JokesModule,
+    UsersModule,
     MainProfilesModule,
     BottlesModule,
+    VintagesModule,
+    TestModule,
   ],
   providers: [
     {

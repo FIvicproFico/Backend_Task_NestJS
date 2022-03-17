@@ -22,6 +22,7 @@ export class UsersService {
       const users = await this.userModel.findAll();
       return users;
     } catch (error) {
+      console.log(error);
       return [];
     }
   }
