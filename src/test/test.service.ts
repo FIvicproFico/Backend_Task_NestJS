@@ -10,6 +10,8 @@ export class TestService {
   constructor(
     @InjectModel(TestTable)
     private readonly testRepo: typeof TestTable,
+    @InjectModel(TestTableOne)
+    private readonly testOneRepo: typeof TestTableOne,
   ) {}
 
   test(id: number): string {
@@ -24,6 +26,26 @@ export class TestService {
       return tests;
     } catch (error) {
       return [];
+    }
+  }
+
+  async delete(id: number): Promise<void> {
+    try {
+      await this.testRepo.destroy({
+        where: { id },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteOne(id: number): Promise<void> {
+    try {
+      await this.testOneRepo.destroy({
+        where: { id },
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
 }

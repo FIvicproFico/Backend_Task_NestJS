@@ -1,6 +1,6 @@
 import TestTable from 'database/models/testTable.model';
 
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Delete, Get, Param } from '@nestjs/common';
 
 import { TestService } from './test.service';
 
@@ -16,5 +16,15 @@ export class TestController {
   @Get('tests')
   public getAll(): Promise<TestTable[]> {
     return this.testService.findAll();
+  }
+
+  @Delete('tests/:id')
+  public delete(@Param('id') id: number): void {
+    this.testService.delete(id);
+  }
+
+  @Delete('tests/one/:id')
+  public deleteOne(@Param('id') id: number): void {
+    this.testService.delete(id);
   }
 }

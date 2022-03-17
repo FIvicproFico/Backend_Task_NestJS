@@ -24,6 +24,8 @@ export default class TestTableTwo extends ModelWithPk {
   @Column
   testId: number;
 
-  @BelongsTo(() => TestTable)
+  @BelongsTo(() => TestTable, {
+    onDelete: 'CASCADE',
+  })
   public testTable: TestTable;
 }

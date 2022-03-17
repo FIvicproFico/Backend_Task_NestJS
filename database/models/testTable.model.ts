@@ -20,7 +20,7 @@ export default class TestTable extends ModelWithPk {
   @Column(DataType.STRING)
   name: string;
 
-  @HasMany(() => TestTableOne, 'test_id')
+  @HasMany(() => TestTableOne)
   public testsOne: TestTableOne[];
 
   @HasMany(() => TestTableTwo)

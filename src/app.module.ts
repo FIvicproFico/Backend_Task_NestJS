@@ -1,9 +1,10 @@
+import models from 'database/models';
+
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { APP_FILTER } from '@nestjs/core';
 
 import sequalizeConfig from './config/seq-config';
-import models from '../database/models';
 
 import { UsersModule } from './users/users.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
@@ -17,9 +18,10 @@ import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
+    SequelizeModule.forFeature(models),
     SequelizeModule.forRoot({
       ...sequalizeConfig,
-      models,
+      // models,
       synchronize: true,
       autoLoadModels: true,
       logging: true,

@@ -19,9 +19,9 @@ const models = [
   Barcode,
   Grape,
   BottleGrape,
+  TestTable,
   TestTableOne,
   TestTableTwo,
-  TestTable,
 ];
 
 export default models;
