@@ -21,7 +21,7 @@ import { TestModule } from './test/test.module';
     SequelizeModule.forFeature(models),
     SequelizeModule.forRoot({
       ...sequalizeConfig,
-      // models,
+      // models ,
       synchronize: true,
       autoLoadModels: true,
       logging: true,
