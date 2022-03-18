@@ -1,5 +1,3 @@
-import models from 'database/models';
-
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { APP_FILTER } from '@nestjs/core';
@@ -18,7 +16,6 @@ import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
-    SequelizeModule.forFeature(models),
     SequelizeModule.forRoot({
       ...sequalizeConfig,
       // models ,
