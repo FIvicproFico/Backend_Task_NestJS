@@ -1,6 +1,6 @@
-import TestTable from 'database/models/testTable.model';
-import TestTableOne from 'database/models/testTableOne.model';
-import TestTableTwo from 'database/models/testTableTwo.model';
+import TestTable from '@app/database/models/testTable.model';
+import TestTableOne from '@app/database/models/testTableOne.model';
+import TestTableTwo from '@app/database/models/testTableTwo.model';
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';

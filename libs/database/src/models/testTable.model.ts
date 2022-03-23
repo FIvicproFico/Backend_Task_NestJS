@@ -20,7 +20,7 @@ export default class TestTable extends ModelWithPk {
   @Column(DataType.STRING)
   name: string;
 
-  @HasMany(() => TestTableOne)
+  @HasMany(() => TestTableOne, { onDelete: 'CASCADE' })
   public testsOne: TestTableOne[];
 
   @HasMany(() => TestTableTwo)

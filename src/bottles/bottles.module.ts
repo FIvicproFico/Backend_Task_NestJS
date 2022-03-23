@@ -1,7 +1,7 @@
-import Bottle from 'database/models/bottle.model';
-import Grape from 'database/models/grapes.model';
-import BottleGrape from 'database/models/bottleGrape.model';
-import Barcode from 'database/models/barcode.model';
+import Bottle from '@app/database/models/bottle.model';
+import Grape from '@app/database/models/grapes.model';
+import BottleGrape from '@app/database/models/bottleGrape.model';
+import Barcode from '@app/database/models/barcode.model';
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';

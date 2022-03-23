@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { SequelizeModule } from '@nestjs/sequelize';
 import { APP_FILTER } from '@nestjs/core';
+import { DatabaseModule } from '@app/database';
 
 import sequalizeConfig from './config/seq-config';
 
@@ -16,13 +16,7 @@ import { TestModule } from './test/test.module';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      ...sequalizeConfig,
-      // models ,
-      synchronize: true,
-      autoLoadModels: true,
-      logging: true,
-    }),
+    DatabaseModule.register(sequalizeConfig),
     AuthModule,
     EmailModule,
     JokesModule,

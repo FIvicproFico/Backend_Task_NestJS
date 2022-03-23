@@ -1,8 +1,8 @@
-import MainProfile from 'database/models/mainProfile.model';
-import Manufacturer from 'database/models/manufacturer.model';
-import Vintage from 'database/models/vintage.model';
-import Bottle from 'database/models/bottle.model';
-import Grape from 'database/models/grapes.model';
+import MainProfile from '@app/database/models/mainProfile.model';
+import Manufacturer from '@app/database/models/manufacturer.model';
+import Vintage from '@app/database/models/vintage.model';
+import Bottle from '@app/database/models/bottle.model';
+import Grape from '@app/database/models/grapes.model';
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';

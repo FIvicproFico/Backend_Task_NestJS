@@ -1,4 +1,4 @@
-import User from 'database/models/user.model';
+import User from '@app/database/models/user.model';
 
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';

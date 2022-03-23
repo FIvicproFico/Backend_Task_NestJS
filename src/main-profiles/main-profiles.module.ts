@@ -1,5 +1,5 @@
-import MainProfile from 'database/models/mainProfile.model';
-import Manufacturer from 'database/models/manufacturer.model';
+import MainProfile from '@app/database/models/mainProfile.model';
+import Manufacturer from '@app/database/models/manufacturer.model';
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';

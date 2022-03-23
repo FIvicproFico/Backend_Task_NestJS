@@ -1,4 +1,4 @@
-import User from 'database/models/user.model';
+import User from '@app/database/models/user.model';
 
 import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';

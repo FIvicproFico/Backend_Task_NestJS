@@ -12,6 +12,8 @@
   },
   "moduleNameMapper": {
     "@lib/my-logger/(.*)": "<rootDir>/../libs/my-logger/src/$1",
-    "@lib/my-logger": "<rootDir>/../libs/my-logger/src"
+    "@lib/my-logger": "<rootDir>/../libs/my-logger/src",
+    "@app/database/(.*)": "<rootDir>/../libs/database/src/$1",
+    "@app/database": "<rootDir>/../libs/database/src"
   }
 }

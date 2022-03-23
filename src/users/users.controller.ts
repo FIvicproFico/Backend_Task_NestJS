@@ -1,3 +1,5 @@
+import User from '@app/database/models/user.model';
+
 import {
   Body,
   Controller,
@@ -10,8 +12,6 @@ import {
 } from '@nestjs/common';
 import { MyLoggerService } from '@lib/my-logger';
 import { RolesGuard } from 'src/guards/roles.guard';
-
-import User from '../../database/models/user.model';
 
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { BasicGuard } from '../guards/basic-auth.guard';

@@ -1,4 +1,4 @@
-import TestTable from 'database/models/testTable.model';
+import TestTable from '@app/database/models/testTable.model';
 
 import { Controller, Delete, Get, Param } from '@nestjs/common';
 

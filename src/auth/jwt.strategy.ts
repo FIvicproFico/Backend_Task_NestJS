@@ -1,4 +1,4 @@
-import User from 'database/models/user.model';
+import User from '@app/database/models/user.model';
 
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';

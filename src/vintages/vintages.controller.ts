@@ -1,4 +1,4 @@
-import Vintage from 'database/models/vintage.model';
+import Vintage from '@app/database/models/vintage.model';
 
 import { Controller, Delete, Get, Param } from '@nestjs/common';
 

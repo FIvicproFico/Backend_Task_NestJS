@@ -18,8 +18,18 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@lib/my-logger": ["libs/my-logger/src"],
-      "@lib/my-logger/*": ["libs/my-logger/src/*"]
+      "@lib/my-logger": [
+        "libs/my-logger/src"
+      ],
+      "@lib/my-logger/*": [
+        "libs/my-logger/src/*"
+      ],
+      "@app/database": [
+        "libs/database/src"
+      ],
+      "@app/database/*": [
+        "libs/database/src/*"
+      ]
     }
   }
 }

@@ -10,10 +10,21 @@
       "compilerOptions": {
         "tsConfigPath": "libs/my-logger/tsconfig.lib.json"
       }
+    },
+    "database": {
+      "type": "library",
+      "root": "libs/database",
+      "entryFile": "index",
+      "sourceRoot": "libs/database/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/database/tsconfig.lib.json"
+      }
     }
   },
   "compilerOptions": {
-    "assets": ["email/templates/**/*"],
+    "assets": [
+      "email/templates/**/*"
+    ],
     "watchAssets": true,
     "webpack": true
   }

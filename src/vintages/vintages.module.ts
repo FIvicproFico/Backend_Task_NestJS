@@ -1,4 +1,4 @@
-import Vintage from 'database/models/vintage.model';
+import Vintage from '@app/database/models/vintage.model';
 
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
