@@ -1,18 +1,18 @@
 {
   "editor.formatOnSave": true,
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#1857a4",
+    "titleBar.activeBackground": "#8a2be2",
     "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.inactiveBackground": "#1857a499",
+    "titleBar.inactiveBackground": "#8a2be299",
     "titleBar.inactiveForeground": "#e7e7e799",
-    "statusBar.background": "#1857a4",
-    "statusBar.debuggingBackground": "#a46518",
-    "statusBar.debuggingForeground": "#e7e7e7",
+    "statusBar.background": "#8a2be2",
+    "statusBar.debuggingBackground": "#83e22b",
+    "statusBar.debuggingForeground": "#15202b",
     "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#1f6fd0",
-    "statusBarItem.remoteBackground": "#1857a4",
+    "statusBarItem.hoverBackground": "#a358e8",
+    "statusBarItem.remoteBackground": "#8a2be2",
     "statusBarItem.remoteForeground": "#e7e7e7",
-    "sash.hoverBorder": "#1f6fd0"
+    "sash.hoverBorder": "#a358e8"
   },
-  "peacock.color": "#1857a4"
+  "peacock.color": "#8A2BE2"
 }
