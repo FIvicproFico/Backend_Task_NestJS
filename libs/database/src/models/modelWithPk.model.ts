@@ -7,7 +7,11 @@ import {
   PrimaryKey,
 } from 'sequelize-typescript';
 
-abstract class ModelWithPk extends Model {
+// eslint-disable-next-line @typescript-eslint/ban-types
+abstract class ModelWithPk<T extends {} = {}, U extends {} = {}> extends Model<
+  T,
+  U
+> {
   @PrimaryKey
   @AutoIncrement
   @AllowNull(false)

@@ -6,6 +6,8 @@ import Manufacturer from '@app/database/models/manufacturer.model';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 
+import { BottleCreateDto } from './dto/bottle-create.dto';
+
 @Injectable()
 export class BottlesService {
   constructor(
@@ -54,5 +56,18 @@ export class BottlesService {
       hashMap.set(bottle.name, bottle);
     });
     return hashMap;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public create(bottleData: BottleCreateDto): Promise<Bottle> {
+    return this.bottleRepo.create({
+      name: 'Test4',
+      isOnlineAvailable: false,
+      isAvailable: false,
+      isSpecial: false,
+      isPublic: false,
+      mainProfileId: 1,
+      vintageId: 1,
+    });
   }
 }
