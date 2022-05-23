@@ -58,6 +58,32 @@ export class BottlesService {
     return hashMap;
   }
 
+  private formatDate = (dateString: string): string => {
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    const d = new Date(dateString);
+    const day = days[d.getDay()];
+    const date = d.getDate();
+    const month = months[d.getMonth()];
+    const year = d.getFullYear();
+    return `${day} ${date} ${month} ${year}`;
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public create(bottleData: BottleCreateDto): Promise<Bottle> {
     return this.bottleRepo.create({

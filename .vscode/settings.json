@@ -12,7 +12,14 @@
     "statusBarItem.hoverBackground": "#a358e8",
     "statusBarItem.remoteBackground": "#8a2be2",
     "statusBarItem.remoteForeground": "#e7e7e7",
-    "sash.hoverBorder": "#a358e8"
+    "sash.hoverBorder": "#a358e8",
+    "editorBracketHighlight.foreground1": "#fff",
+    "editorBracketHighlight.foreground2": "#fff",
+    "editorBracketHighlight.foreground3": "#fff",
+    "editorBracketHighlight.foreground4": "#fff",
+    "editorBracketHighlight.foreground5": "#fff",
+    "editorBracketHighlight.foreground6": "#fff",
+    "editorBracketHighlight.unexpectedBracket.foreground": "#fff"
   },
   "peacock.color": "#8A2BE2"
 }
