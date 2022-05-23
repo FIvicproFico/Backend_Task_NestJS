@@ -23,6 +23,6 @@ export default class TestTable extends ModelWithPk {
   @HasMany(() => TestTableOne, { onDelete: 'CASCADE' })
   public testsOne: TestTableOne[];
 
-  @HasMany(() => TestTableTwo)
+  @HasMany(() => TestTableTwo, { onDelete: 'SET NULL' })
   public testsTwo: TestTableTwo[];
 }

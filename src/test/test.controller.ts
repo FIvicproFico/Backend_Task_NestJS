@@ -25,6 +25,6 @@ export class TestController {
 
   @Delete('tests/one/:id')
   public deleteOne(@Param('id') id: number): void {
-    this.testService.delete(id);
+    this.testService.deleteOne(id);
   }
 }

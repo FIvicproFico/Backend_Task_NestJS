@@ -11,7 +11,6 @@ import {
   Table,
   Unique,
 } from 'sequelize-typescript';
-import { InferAttributes, InferCreationAttributes } from 'sequelize/types';
 
 import Barcode from './barcode.model';
 import BottleGrape from './bottleGrape.model';
@@ -31,10 +30,7 @@ const indexedFields = ['name', 'volume'];
   collate: 'utf8mb4_bin',
   timestamps: false,
 })
-export default class Bottle extends ModelWithPk<
-  InferAttributes<Bottle>,
-  InferCreationAttributes<Bottle>
-> {
+export default class Bottle extends ModelWithPk {
   @AllowNull(false)
   @Column(DataType.STRING)
   public name: string;

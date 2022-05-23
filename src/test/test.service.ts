@@ -23,6 +23,7 @@ export class TestService {
       const tests = await this.testRepo.findAll({
         include: [{ model: TestTableOne }, { model: TestTableTwo }],
       });
+      tests.map(test => console.log(test));
       return tests;
     } catch (error) {
       return [];
